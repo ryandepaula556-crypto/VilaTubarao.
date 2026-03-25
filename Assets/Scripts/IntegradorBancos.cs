@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
@@ -31,7 +31,7 @@ public class IntegradorBancos : MonoBehaviour {
         painelConfirmaSaque.SetActive(true);
     }
 
-    // O RESTO QUE FALTAVA: A FUNÇÃO QUE PAGA O JOGADOR!
+    // FUNÇÃO QUE ENVIA O DINHEIRO PARA O JOGADOR
     public void ConfirmarSaque(string chavePixDestino) {
         StartCoroutine(EnviarPixAutomatico(chavePixDestino));
     }
@@ -44,7 +44,7 @@ public class IntegradorBancos : MonoBehaviour {
         form.AddField("destination_alias", chave);
 
         using (UnityWebRequest www = UnityWebRequest.Post(url, form)) {
-            // Usa o Token que você gerou para autorizar o banco
+            // Usa o seu Token para autorizar o banco
             www.SetRequestHeader("Authorization", "Bearer " + tokenMestre);
             yield return www.SendWebRequest();
 
